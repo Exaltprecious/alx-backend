@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Most Recently Used caching module. By Okpako Michael
+"""Most Recently Used caching module.
 """
 from collections import OrderedDict
 
@@ -23,13 +23,6 @@ class MRUCache(BaseCaching):
         if key is None or item is None:
             return
         if key not in self.cache_data:
-            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                mru_key, _ = self.cache_data.popitem(False)
-                print("DISCARD:", mru_key)
-            self.cache_data[key] = item
-            self.cache_data.move_to_end(key, last=False)
-        else:
-            self.cache_data[key] = item 
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 mru_key, _ = self.cache_data.popitem(False)
                 print("DISCARD:", mru_key)
