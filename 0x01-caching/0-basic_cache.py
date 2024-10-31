@@ -1,4 +1,4 @@
-/usr/bin/env python3
+#!/usr/bin/env python3
 """Basic caching module.
 """
 from base_caching import BaseCaching
@@ -6,7 +6,7 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """Represents an object that allows storing and
-    retrieving items from a dictionary. By Okpako Michael
+    retrieving items from a dictionary.
     """
     def put(self, key, item):
         """Adds an item in the cache.
