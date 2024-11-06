@@ -18,10 +18,9 @@ class Config:
 app = Flask(__name__)
 app.config.from_object(Config)
 app.url_map.strict_slashes = False
-babel = Babel(app)
+babel = Babel()
 
 
-@babel.localeselector
 def get_locale() -> str:
     """Retrieves the locale for a web page.
 
@@ -34,6 +33,10 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
+# Initialize Babel with locale_selector
+babel.init_app(app, locale_selector=get_locale)
+
+
 @app.route('/')
 def index() -> str:
     '''default route
@@ -42,11 +45,6 @@ def index() -> str:
         html: homepage
     '''
     return render_template("4-index.html")
-
-# uncomment this line and comment the @babel.localeselector
-# you get this error:
-# AttributeError: 'Babel' object has no attribute 'localeselector'
-# babel.init_app(app, locale_selector=get_locale)
 
 
 if __name__ == "__main__":
